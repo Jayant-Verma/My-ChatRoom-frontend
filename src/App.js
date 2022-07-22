@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import MainForm from "./components/MainForm";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ChatRoom from "./components/ChatRoom";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    return (
+        <div
+            className="container-fluid bg-light text-dark d-flex align-items-center justify-content-center"
+            style={{ height: "100vh" }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+            <Router>
+                <Routes>
+                    <Route index element={<MainForm />}></Route>
+                    <Route
+                        path="/chat/:roomName"
+                        element={<ChatRoom />}
+                    ></Route>
+                    <Route path="*" element={<h1>404 not found!</h1>}></Route>
+                </Routes>
+            </Router>
+        </div>
+    );
 }
 
 export default App;
